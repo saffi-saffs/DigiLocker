@@ -94,7 +94,7 @@
                 <span>
                   <i class="ti ti-user-plus"></i>
                 </span>
-                <span class="hide-menu">Logout</span>
+              
               </a>
             </li>
             <li class="nav-small-cap">
@@ -162,7 +162,9 @@
                       <i class="ti ti-mail fs-6"></i>
                       <p class="mb-0 fs-3">My Account</p>
                     </a>
-                   
+                    <a href="/logout"> <span class="hide-menu">Logout</span><a>
+    @csrf
+</form>
                     <a href="/login" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                   </div>
                 </div>
