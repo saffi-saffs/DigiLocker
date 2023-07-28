@@ -21,7 +21,7 @@
 <body>
      <br>
     <div class="container mt-5">
-        <form action="{{route('fileUpload')}}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('upload-file') }}" method="POST" enctype="multipart/form-data">
           <h3 class="text-center mb-5">Upload Your File</h3>
             @csrf
             @if ($message = Session::get('success'))
@@ -45,6 +45,7 @@
             <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
                 Upload Files
             </button>
+            
         </form>
     </div>
 </body>

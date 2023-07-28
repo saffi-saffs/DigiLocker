@@ -9,6 +9,7 @@ use App\Http\Controllers\BankController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FileUpload;
+use App\Http\Controllers\StoredFiles;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
 
@@ -35,7 +36,7 @@ Route::get('/', [HomeController::class, 'index']
 Route::get('/home', [HomeController::class, 'index']);
 
 
-
+Route::get('/files', [FileUpload::class, 'showFiles']);
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/about', [AboutController::class, 'show']);
 Route::get('/services', [ServicesController::class, 'show']);
@@ -46,7 +47,7 @@ Route::get('/form', [FormController::class, 'form']);
 
 Route::get('/upload-file', [FileUpload::class, 'createForm']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
-
+Route::get('/files', [FileUpload::class, 'show']);
 Route::get('/readfiles/{filename}', [FileUpload::class, 'show'])->name('readFiles');
 Auth::routes();
 
@@ -83,3 +84,8 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
+
+Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('upload-file');
+
+Route::get('/photos', [FileUpload::class, 'showPhotos']);
+  
