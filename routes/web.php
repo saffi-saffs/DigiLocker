@@ -37,6 +37,8 @@ Route::get('/home', [HomeController::class, 'index']);
 
 
 Route::get('/files', [FileUpload::class, 'showFiles']);
+Route::get('/profile', [ProfileController::class, 'profileView']);
+
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/about', [AboutController::class, 'show']);
 Route::get('/services', [ServicesController::class, 'show']);
@@ -55,11 +57,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__.'/auth.php';
 

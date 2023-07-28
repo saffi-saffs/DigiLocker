@@ -30,27 +30,7 @@
           <ul id="sidebarnav">
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Home</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/dashboard" aria-expanded="false">
-                <span>
-                  <i class="ti ti-layout-dashboard"></i>
-                </span>
-                <span class="hide-menu">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">COMPONENTS</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/form" aria-expanded="false">
-                <span>
-                  <i class="ti ti-article"></i>
-                </span>
-                <span class="hide-menu">Upload Documents</span>
-              </a>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="/files" aria-expanded="false">
@@ -60,27 +40,36 @@
                 <span class="hide-menu">Stored Documents</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/upload-file" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Upload Documents</span>
+              </a>
+            </li>
             
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">My Profile</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+              <a class="sidebar-link" href="/profile" aria-expanded="false">
                 <span>
-                  <i class="ti ti-login"></i>
+                  <i class="ti ti-user-plus"></i>
                 </span>
                 <span class="hide-menu">Profile</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/login" aria-expanded="false">
+              <a class="sidebar-link" href="/logout" aria-expanded="false">
                 <span>
-                  <i class="ti ti-user-plus"></i>
+                  <i class="ti ti-login"></i>
                 </span>
-              
+                <span class="hide-menu">Logout</span>
               </a>
             </li>
+            
           
           
         </nav>
