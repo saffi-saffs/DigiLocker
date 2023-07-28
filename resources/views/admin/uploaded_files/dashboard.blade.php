@@ -1,4 +1,4 @@
-<!-- resources/views/admin/uploaded-files/dashboard.blade.php -->
+
 @extends('admin.uploaded-files.admin')
 
 @section('content')
