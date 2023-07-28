@@ -17,6 +17,14 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\UploadFileController;
 
+use App\Http\Controllers\Admin\UploadedFileController;
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Auth\UserLoginController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
+
+
+
 
 
 /*
@@ -77,15 +85,38 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+//Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+//Route::post('/login', [LoginController::class, 'login']);
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+//Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+//Route::post('/login', [LoginController::class, 'login']);
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('upload-file');
 
 Route::get('/photos', [FileUpload::class, 'showPhotos']);
+
+
+
+Route::post('/upload', [UploadedFileController::class, 'store'])->name('upload');
+
+
+
+
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/uploaded_files', [UploadedFileController::class, 'index'])->name('admin.uploaded_files.index');
+    Route::get('/uploaded_files/{id}', [UploadedFileController::class, 'show'])->name('admin.uploaded_files.show');
+    Route::delete('/uploaded_files/{id}', [UploadedFileController::class, 'destroy'])->name('admin.uploaded_files.destroy');
+});
+
   
+Route::get('/login', [UserLoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [UserLoginController::class, 'login']);
+// routes/web.php
+Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
+    // Define your admin routes here
+    Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminLoginController::class, 'login']);
+});
