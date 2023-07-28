@@ -17,8 +17,8 @@
                 </svg>
                 <i class="bx bxl-dribbble"></i>
               </div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <h4><a href="">services</a></h4>
+              <p>the digital document locker has the potential to transform the way we handle and protect our vital information. Its strong emphasis on security, accessibility, organization, and efficiency, combined with high-quality features and customer support, makes it an invaluable asset for individuals and businesses in the digital age.</p>
             </div>
           </div>
 

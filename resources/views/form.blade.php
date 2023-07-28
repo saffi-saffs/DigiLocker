@@ -49,7 +49,7 @@ border-radius: 10px;
 margin: 150px 100px 200px 150px ;
 position: center;
 text-align: center;
-transition: margin 0.7s, background 0.5s, display 1s, width 1s;
+transition: margin 0.7s, background 0.8s, display 2s, width 1s;
 width: 50%;
 z-index: 5;
 

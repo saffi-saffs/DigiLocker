@@ -114,9 +114,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
   
 Route::get('/login', [UserLoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserLoginController::class, 'login']);
-// routes/web.php
+
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
-    // Define your admin routes here
+
     Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminLoginController::class, 'login']);
 });

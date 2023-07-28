@@ -32,33 +32,35 @@
     <div class="container d-flex align-items-center justify-content-between">
       <h1 class="logo">
       
-      <a href="index.html" class="logo"><img src="asset/img/logo.png" alt="" class="img-fluid">DigiLoc</a></h1>
+      <a href="/about" class="logo"><img src="asset/img/logo.png" alt="" class="img-fluid">DigiLoc</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="/about">About</a></li>
-          <li><a class="nav-link scrollto" href="/services">Services</a></li>
-        
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"><span>Our Services</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+              <li><a href="#">Customer Care</a></li>
+              <li class="dropdown"><a href="#"><span>IT support</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
+                  <li><a href="#">member 1</a></li>
+                  <li><a href="#">member 2</a></li>
+                  <li><a href="#">member 3</a></li>
+                  <li><a href="#">member 4</a></li>
+                  
                 </ul>
               </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+           
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li class="dropdown"><a href="#"><span>Our Team</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">project Managers</a></li>
+              <li><a href="#">Team Leaders</a></li>
+              
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="/contact">Contact</a></li>
           <li><a class="getstarted scrollto" href="/login">Get Started</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -88,11 +90,11 @@
             <h3>DigiLoc</h3>
             
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+              Jhocheen Street<br>
+              New Road ,Kathmadu<br>
+              Nepal <br><br>
+              <strong>Phone:</strong> +977 121212123<br>
+              <strong>Email:</strong> info@DigiLoc.com<br>
             </p>
           </div>
 
@@ -120,7 +122,7 @@
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+           
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
