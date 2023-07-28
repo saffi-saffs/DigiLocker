@@ -15,4 +15,5 @@ class File extends Model
         'uploder_id',
         'file_type_id'
     ];
+
 }

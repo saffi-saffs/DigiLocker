@@ -11,4 +11,5 @@ class FileType extends Model
 
     protected $table = 'file_types';
     protected $primaryKey = 'id';
+
 }

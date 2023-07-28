@@ -6,14 +6,12 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\File;
 use App\Models\FileType;
+use SebastianBergmann\Environment\Console;
 
 class FileUpload extends Controller
 {
     public function createForm()
     {
-        $files = File::all();
-        error_log($files);
-        
         $fileTypes = FileType::all();
         return view('file-upload', compact('fileTypes'));
     }
@@ -33,7 +31,7 @@ class FileUpload extends Controller
         $fileModel = new File;
 
         if ($req->file()) {
-            $fileName = str_replace(' ', '_', $req->get('filename')).'.'.$req->file('file')->extension();
+            $fileName = $userid.'_'.str_replace(' ', '_', $req->get('filename')).'.'.$req->file('file')->extension();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
 
             // Store the file path in the database using the correct storage path
@@ -64,10 +62,15 @@ class FileUpload extends Controller
     
     public function show()
     {
-        $files = File::all(); // Retrieve all files from the database
-
+        $userid = auth()->user()->id;
+        $files = File::join('file_types', 'files.file_type_id', '=', 'file_types.id')
+        ->where('files.uploder_id', $userid)
+        ->get(['files.*', 'file_types.file_type']);
+        
+        error_log($files);
         return view('file-list', compact('files'));
     }
+
 }
 
    
