@@ -1,4 +1,4 @@
-<!-- resources/views/admin/uploaded_files/show.blade.php -->
+
 @extends('layouts.admin')
 
 @section('content')
