@@ -90,4 +90,5 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('upload-file');
 
 Route::get('/photos', [FileUpload::class, 'showPhotos']);
+Route::get('/logout', [LoginController::class, 'logout']);
   
