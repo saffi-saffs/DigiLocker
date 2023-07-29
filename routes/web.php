@@ -49,6 +49,7 @@ Route::get('/form', [FormController::class, 'form']);
 
 Route::get('/upload-file', [FileUpload::class, 'createForm']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
+
 Route::get('/files', [FileUpload::class, 'show']);
 Route::get('/readfiles/{filename}', [FileUpload::class, 'show'])->name('readFiles');
 Auth::routes();
@@ -91,4 +92,5 @@ Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('upload-fil
 
 Route::get('/photos', [FileUpload::class, 'showPhotos']);
 Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('/update-user', [ProfileController::class, 'update'])->name('update-user');
   

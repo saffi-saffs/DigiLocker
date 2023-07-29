@@ -52,8 +52,9 @@
       </style>
    </head>
    <body>
-      <br>
-      <form method="get" >
+      <br><br>
+
+      <form action="/update-user" method="PUT" enctype="multipart/form-data">
          @csrf
          <br>
          <div class="container mt-5">
@@ -63,22 +64,21 @@
             </div>
             <br>
             <div class='form-content'>
-               <label for="firstname" class="col-sm-3 col-form-label">  First Name:</label> <input type="text" name="fname"/> 
+               <label for="firstname" class="col-sm-3 col-form-label">  First Name:</label> <input type="text" name="fname" value="{{$user->first_name}}"/> 
             </div>
             <br>
-            <div><label for="lastname" class="col-sm-3 col-form-label">  Last Name:</label><input type="text" name="lname"/></div>
+            <div><label for="lastname" class="col-sm-3 col-form-label">  Last Name:</label><input type="text" name="lname" value="{{$user->last_name}}"/></div>
             <br>
-            <div><label for="address" class="col-sm-3 col-form-label">  Address:</label><input type="text" name="address"/></div>
+            <div><label for="address" class="col-sm-3 col-form-label">  Address:</label><input type="text" name="address" value="{{$user->address}}"/></div>
             <br>
-            <div><label for="email" class="col-sm-3 col-form-label">  Email:</label><input type="email" name="email"/></div>
+            <div><label for="email" class="col-sm-3 col-form-label">  Email:</label><input type="email" name="email" value="{{$user->email}}" disabled/></div>
             <br>
-            <div><label for="phone" class="col-sm-3 col-form-label"> Phone Number:</label><input type="text" name="phnum"/></div>
+            <div><label for="phone" class="col-sm-3 col-form-label"> Phone Number:</label><input type="text" name="phnum" value="{{$user->phone}}"/></div>
             <br>
-            <div> <label for="citizenship" class="col-sm-3 col-form-label"> Citizen Number:</label><input type="text" name="citizennum"/></div>
+            <div> <label for="citizenship" class="col-sm-3 col-form-label"> Citizen Number:</label><input type="text" name="citizennum" value="{{$user->citizen_number}}"/></div>
             <div>
                <br>
-               <a href="upload-file"   > 
-               <input type="button" name="submit" value="Submit" class="btn btn-primary btn-block mt-4" ></a>
+               <input type="submit" name="submit" value="Submit" class="btn btn-primary btn-block mt-4" >
             </div>
          </div>
       </form>

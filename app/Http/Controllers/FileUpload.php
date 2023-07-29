@@ -67,7 +67,6 @@ class FileUpload extends Controller
         ->where('files.uploder_id', $userid)
         ->get(['files.*', 'file_types.file_type']);
         
-        error_log($files);
         return view('file-list', compact('files'));
     }
 
