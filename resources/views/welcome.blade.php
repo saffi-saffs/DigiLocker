@@ -60,6 +60,7 @@
           <h3 style="color:white">Your Own Online Locker  </h3>
           <h5 style="color:white">Store and Secure Your Documents</h5>
           <div><a href="/login" class="btn-get-started scrollto">User Login</a></div>
+          
           @auth('admin')
                 <div><a href="{{ route('admin.dashboard') }}" class="btn-get-started scrollto">Admin Dashboard</a></div>
                 @else

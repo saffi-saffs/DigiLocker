@@ -30,7 +30,7 @@ class HomeController extends Controller
          $files = File::join('file_types', 'files.file_type_id', '=', 'file_types.id')
     ->where('files.verified', false) // Exclude verified files
     ->get(['files.*', 'file_types.file_type']);
-
+        //dd($files);
            
 
         return view('admin.verifyfiles', compact('files', 'userid'));
