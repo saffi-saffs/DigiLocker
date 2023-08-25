@@ -1,15 +1,6 @@
-<!doctype html>
-<html lang="en">
+<x-app-layout>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DigiLoc</title>
-  <link rel="shortcut icon" type="image/png" href="{{asset('img/logos/digi.png')}}" />
-  <link rel="stylesheet" href="{{asset('css/styles.min.css')}}" />
-</head>
 
-<body>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
@@ -35,7 +26,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="/files" aria-expanded="false">
                 <span>
-                  <i class="ti ti-alert-circle"></i>
+                  <i class="ti ti-album"></i>
                 </span>
                 <span class="hide-menu">Stored Documents</span>
               </a>
@@ -47,8 +38,16 @@
                 </span>
                 <span class="hide-menu">Upload Documents</span>
               </a>
+
+              
             </li>
-            
+             <li class="sidebar-item">
+              <a class="sidebar-link" aria-expanded="false" href="{{ route('userverified-files') }}">
+                <span>
+                  <i class="ti ti-address-book"></i>
+                </span>
+                <span class="hide-menu">View Your Verified Files</span>
+              </a>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">My Profile</span>
@@ -58,6 +57,7 @@
                 <span>
                   <i class="ti ti-user-plus"></i>
                 </span>
+
                 <span class="hide-menu">Profile</span>
               </a>
             </li>
@@ -69,7 +69,8 @@
                 <span class="hide-menu">Logout</span>
               </a>
             </li>
-            
+           
+
           
           
         </nav>
@@ -80,49 +81,10 @@
     <!--  Sidebar End -->
     <!--  Main wrapper -->
     <div class="body-wrapper">
-      <!--  Header Start -->
-      <header class="app-header">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <ul class="navbar-nav">
-            <li class="nav-item d-block d-xl-none">
-              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-                <i class="ti ti-menu-2"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                <i class="ti ti-bell-ringing"></i>
-                <div class="notification bg-primary rounded-circle"></div>
-              </a>
-            </li>
-          </ul>
-          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <li class="nav-item dropdown">
-                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <img src="{{asset('img/profile/user-1.jpg')}}" alt="" width="35" height="35" class="rounded-circle">
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                  <div class="message-body">
-                    <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-user fs-6"></i>
-                      <p class="mb-0 fs-3">My Profile</p>
-                    </a>
-                    <!-- <a href="/logout"> <span class="hide-menu">Logout</span><a> -->
-                    <a href="/logout" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!--  Header End -->
-      
+ 
          @yield('content')
        
-                
+    </div>    
   <script src="{{asset('libs/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('js/sidebarmenu.js')}}"></script>
@@ -130,6 +92,8 @@
 
   <script src="{{asset('libs/simplebar/dist/simplebar.js')}}"></script>
   <script src="{{asset('js/dashboard.j')}}s"></script>
-</body>
 
-</html>
+
+
+
+</x-app-layout>

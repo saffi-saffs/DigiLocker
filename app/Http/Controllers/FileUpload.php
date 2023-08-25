@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\File;
 use App\Models\FileType;
 use SebastianBergmann\Environment\Console;
-
+ use App\Models\VerifiedFile;
 class FileUpload extends Controller
 {
     public function createForm()
@@ -47,12 +47,7 @@ class FileUpload extends Controller
         }
     }
 
-    public function showPhotos()
-    {
-        $photos = Photo::all();
-
-        return view('photo-list', compact('photos'));
-    }
+   
     public function displayFiles(File $file)
     {
          $file =File::all();
@@ -69,6 +64,18 @@ class FileUpload extends Controller
         
         return view('file-list', compact('files'));
     }
+   
+
+public function showVerifiedFiles()
+{
+     $userid = auth()->user()->id;
+
+        $verifiedFiles = File::join('file_types', 'files.file_type_id', '=', 'file_types.id')
+        ->join('verified_files', 'files.id', '=', 'verified_files.file_id')
+        ->where('verified_files.verified_by', $userid)
+        ->get(['files.*', 'file_types.file_type']);
+ return view('userverified-files',compact('verifiedFiles', 'userid'));
+}
 
 }
 

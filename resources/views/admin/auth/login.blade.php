@@ -1,8 +1,8 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
+Admin Login
+    <form method="POST" action="{{ route('admin.adminlogin') }}">
         @csrf
 
         <!-- Email Address -->

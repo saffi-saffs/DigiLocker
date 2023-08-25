@@ -20,7 +20,7 @@
 <body>
      <br>
     <div class="container mt-5">
-        <form action="{{ route('upload-file') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('fileUpload') }}" method="POST" enctype="multipart/form-data">
           <h3 class="text-center mb-5">Upload Your File</h3>
             @csrf
             @if ($message = Session::get('success'))
@@ -55,18 +55,22 @@
         </div>
         <br>
         <div id="multi-upload-button"
-                class="inline-flex items-center px-4 py-2 bg-gray-600 border border-gray-600 rounded-l font-semibold cursor-pointer text-sm text-black tracking-widest hover:bg-gray-500 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition ">
+                class="inline-flex items-center px-4 py-2  ">
             <div class="custom-file">
                 <label class="col-sm-4 col-form-label" for="chooseFile">Select file</label>
                 <input type="file" name="file" class="col-sm-7">
             </div>
         </div>
+        <br>
         <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
             Upload File
         </button>
-            
+            <br>
         </form>
+        <br>
+        <br>
     </div>
+  
 </body>
 </html>
 @endsection

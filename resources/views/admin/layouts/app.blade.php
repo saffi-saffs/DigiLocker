@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>digiloc</title>
+        <title>{{ config('app.name', 'Admin') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -13,16 +13,10 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <head>
- 
-
-  <link rel="shortcut icon" type="image/png" href="{{asset('img/logos/digi.png')}}" />
-  <link rel="stylesheet" href="{{asset('css/styles.min.css')}}" />
-</head>
     </head>
     <body class="font-sans antialiased">
-        <div >
-            @include('layouts.navigation')
+        <div class="min-h-screen bg-gray-100">
+            @include('admin.layouts.navigation')
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -34,7 +28,7 @@
             @endif
 
             <!-- Page Content -->
-            <main class="flex-grow">
+            <main>
                 {{ $slot }}
             </main>
         </div>

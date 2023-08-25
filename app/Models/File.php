@@ -1,19 +1,21 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class File extends Model
 {
-    use HasFactory;
     protected $table = 'files';
     protected $fillable = [
         'name',
         'file_path',
-        'uploder_id',
+        'uploader_id',   // Corrected column name
         'file_type_id'
     ];
 
+    public function uploader()
+    {
+        return $this->belongsTo(User::class, 'uploader_id');
+    }
 }
