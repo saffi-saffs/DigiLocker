@@ -8,6 +8,10 @@ use App\Models\File;
 use App\Models\FileType;
 use SebastianBergmann\Environment\Console;
  use App\Models\VerifiedFile;
+ use App\Models\Admin;
+ 
+
+use App\Models\AdminVerifyfile;
 class FileUpload extends Controller
 {
     public function createForm()
@@ -65,17 +69,43 @@ class FileUpload extends Controller
         return view('file-list', compact('files'));
     }
    
-
+ 
 public function showVerifiedFiles()
 {
      $userid = auth()->user()->id;
 
         $verifiedFiles = File::join('file_types', 'files.file_type_id', '=', 'file_types.id')
-        ->join('verified_files', 'files.id', '=', 'verified_files.file_id')
-        ->where('verified_files.verified_by', $userid)
+         ->where('files.verified', true)
+         
+        ->where('files.uploder_id', $userid)
         ->get(['files.*', 'file_types.file_type']);
  return view('userverified-files',compact('verifiedFiles', 'userid'));
 }
+
+
+////new
+
+   public function sendforverification($id){
+        $userData = File::find($id);
+     
+       
+        $adminData = new  AdminVerifyfile();
+      
+        $adminData->name = $userData->name;
+        $adminData->file_path = $userData->file_path;
+        $adminData->uploder_id = $userData->id;
+        $adminData->file_type_id = $userData->file_type_id;
+        $adminData->verified = $userData->verified;
+        $adminData->verified_by = $userData->verified_by;
+        $adminData->created_at = $userData->created_at;
+        $adminData->updated_at = $userData->updated_at;
+
+        $adminData->save();
+
+    
+        return redirect()->back()->with('message','send for verification');
+    }
+    
 
 }
 

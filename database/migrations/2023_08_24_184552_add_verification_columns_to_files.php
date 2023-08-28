@@ -12,8 +12,7 @@ return new class extends Migration
    public function up()
 {
     Schema::table('files', function (Blueprint $table) {
-        $table->boolean('verified')->default(false);
-        $table->unsignedBigInteger('verified_by')->nullable();
+  
         $table->foreign('verified_by')->references('id')->on('admins');
     });
 }

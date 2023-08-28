@@ -52,12 +52,35 @@
             max-width: 500px;
             max-height: 400px;
         }
+
+ 
+
+
+
+
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+
 </head>
 <body>
     <br><br><br><br>
     <div class="d1">
         <h1>My Uploaded Files</h1>
+
+        @if(session()->has('message'))
+                         <div class="alert alert-success"> 
+                             
+     {{session()->get('message')}}
+     <button type="button" class="close"  aria-hidden="true">X</button>
+                         </div>
+                         @endif
+
+ 
+
         <table width=1600px>
         @php $count = 1 @endphp
         @foreach($files as $file) 
@@ -76,8 +99,13 @@
                 <a href="{{url('storage/'.$file->file_path)}}" target="_blank">
                     <p class="mt-1">{{url('storage/'.$file->file_path)}}</p>
                 </a>
+                     <a href="{{url('sendforverification',$file->id)}}" class="btn btn-success" onclick="return confirm('are you sure to send  this for verification?')">Verify</a>
+
             </div>
         </td> 
+        
+
+        
         @endforeach
 
         
@@ -86,5 +114,14 @@
     
 
 </body>
+
+ <script src="jss/jquery-3.4.1.min.js"></script>
+      <!-- popper js -->
+      <script src="jss/popper.min.js"></script>
+      <!-- bootstrap js -->
+      <script src="jss/bootstrap.js"></script>
+      <!-- custom js -->
+      <script src="jss/custom.js"></script>
+
 </html>
 @endsection

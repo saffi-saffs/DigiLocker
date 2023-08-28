@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('files', function (Blueprint $table) {
-            $table->id();
+        Schema::create('admin_verifyfiles', function (Blueprint $table) {
+         $table->id();
             $table->string('name');
             $table->string('file_path');
               $table->string('uploder_id');
             $table->string('file_type_id');
                $table->boolean('verified')->default(false);
         $table->unsignedBigInteger('verified_by')->nullable();
-
+        $table->foreign('verified_by')->references('id')->on('admins');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('admin_verifyfiles');
     }
 };

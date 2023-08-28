@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 
@@ -36,7 +36,7 @@ Route::get('/home', [HomeController::class, 'index']);
 
 
 Route::get('/files', [FileUpload::class, 'showFiles']);
-Route::get('/profile', [ProfileController::class, 'profileView']);
+
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/about', [AboutController::class, 'show']);
@@ -52,6 +52,7 @@ Route::get('/readfiles/{filename}', [FileUpload::class, 'show'])->name('readFile
 
     Route::get('/verified-files', [FileUpload::class, 'showVerifiedFiles'])->name('userverified-files');
 
+Route::get('/sendforverification/{id}' , [FileUpload::class, 'sendforverification']);
 
 Auth::routes();
 
@@ -66,43 +67,35 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-/*Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});*/
+
 
 require __DIR__.'/auth.php';
 
 ///admin starts
 
-Route::
-        namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
-            Route::namespace('Auth')->middleware('guest:admin')->group(function () {
-                //login route 
-                Route::get('login', [AuthenticatedSessionController::class,'create'])->name('login');
-                Route::post('login', [AuthenticatedSessionController::class,'store'])->name('adminlogin');
-             
 
+// Admin routes
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+    // Authentication routes
+    Route::namespace('Auth')->middleware('guest:admin')->group(function () {
+        Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
+        Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('adminlogin');
+    });
 
+    // Authenticated admin routes
+    Route::middleware('admin')->group(function () {
+        Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+        Route::get('verify-files', [HomeController::class, 'show'])->name('verifyfiles');
+        Route::post('verifieduserfiles', [HomeController::class, 'verified'])->name('verifieduserfiles');
+        Route::get('verified-files', [HomeController::class, 'verifiedFileShow'])->name('verified.files');
 
-
-            });
-            Route::middleware('admin')->group(function () {
-                Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard'); });
-                Route::get('verify-files', [HomeController::class, 'show'])
-                         ->name('verifyfiles');
-                    Route::post('verifieduserfiles', [HomeController::class,'verified'])->name('verifieduserfiles');
-                   // Route::get('verifiedfileshow', [HomeController::class,'verifiedshow'])->name('verifiedfileshow');
-//Route::get('admin/verified-files', [HomeController::class, 'verifiedFileShow'])->name('admin.verified.files');
-
-Route::get('verified-files', [HomeController::class, 'verifiedFileShow'])->name('admin.verified.files');
-Route::get('admin/verified-files', [HomeController::class, 'verifiedFileShow'])->name('admin.verified.files');
-
-                
-            Route::namespace('Auth')->group(function () {
-            
-             Route::post('logout', [AuthenticatedSessionController::class,'destroy'])->name('logout');
-            });
-           
+        Route::get('verifyfiles', [HomeController::class, 'show'])->name('verifyfiles');
+        Route::post('verified', [HomeController::class, 'verified'])->name('admin.verified');
+        
+        // Logout route
+        Route::namespace('Auth')->group(function () {
+            Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
         });
+    }); // <-- Missing closing parenthesis for the outer 'group' function
+});
+        Route::post('/admin/verified', [HomeController::class, 'verified'])->name('admin.verified');

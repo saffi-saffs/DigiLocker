@@ -5,7 +5,7 @@
         </h2>
         <ul class="mt-4 list-none">
             <li class="mb-2"><a href="{{ route('admin.verifyfiles') }}" class="text-blue-600 hover:underline">Verify Files</a></li>
-            <li><a href="{{ route('admin.admin.verified.files') }}" class="text-blue-600 hover:underline">View Verified Files</a></li>
+            <li><a href="{{ route('admin.verified.files') }}" class="text-blue-600 hover:underline">View Verified Files</a></li>
         </ul>
     </x-slot>
 
@@ -13,7 +13,7 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                    
+                    <!-- Your content here -->
                 </div>
             </div>
         </div>
