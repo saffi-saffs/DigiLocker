@@ -8,13 +8,34 @@
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
+<div>
+    <x-input-label for="last_name" :value="__('Last Name')" />
+    <x-text-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="last_name" />
+    <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
+</div>
 
+<div>
+    <x-input-label for="phone" :value="__('Phone')" />
+    <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
+    <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+</div>
+<div>
+    <x-input-label for="citizen_number" :value="__('Citizenship Number')" />
+    <x-text-input id="citizen_number" class="block mt-1 w-full" type="text" name="citizen_number" :value="old('citizen_number')" required autofocus autocomplete="citizen_number" />
+    <x-input-error :messages="$errors->get('citizen_number')" class="mt-2" />
+</div>
+<div>
+    <x-input-label for="address" :value="__('Address')" />
+    <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autofocus autocomplete="address" />
+    <x-input-error :messages="$errors->get('address')" class="mt-2" />
+</div>
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+        
 
         <!-- Password -->
         <div class="mt-4">
