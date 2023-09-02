@@ -30,71 +30,56 @@ class HomeController extends Controller
     }
     public function show()
     {
-       
-            //$userid = auth()->user()->id;
-            $files = AdminVerifyfile::join('file_types', 'admin_verifyfiles.file_type_id', '=', 'file_types.id')
-                ->where('admin_verifyfiles.verified', false)
-                ->get(['admin_verifyfiles.*', 'file_types.file_type']);
 
-            //dd($files);
-
-
-            return view('admin.verifyfiles', compact('files'));
+        $files = File::join('file_types', 'files.file_type_id', '=', 'file_types.id')
+        ->whereNull('files.delete')
+        ->where('files.status', 'pending')
+        ->get(['files.*', 'file_types.file_type']);
+        
+        return view('admin.verifyfiles', compact('files'));
         }
 
     
-    public function verified(Request $request)
+    public function verify($id)
     {
 
+        
 
-        $selectedFileIds = $request->input('selectedFiles');
-if ($selectedFileIds) {
+        $file = File::find($id);
 
-
-            foreach ($selectedFileIds as $fileId) {
-
-                $file = File::findOrFail($fileId);
-                $userfile = AdminVerifyfile::findOrFail($fileId);
-              $file->verified = true;
-$file->verified_by = auth('admin')->user()->id;
-$file->save();
-
-                $userfile->update([
-                    'verified' => true,
-                    'verified_by' => auth('admin')->user()->id,
-                ]);
-
-
-             DB::table('files')->where('id', $fileId)->update([
-    'verified' => true,
-    'verified_by' => auth('admin')->user()->id,
-]);
-
-
-                UserVerifyfile::insert([
-                    'file_type_id' => $file->id,
-                    'verified_by' => auth('admin')->user()->id,
-                    'name' => $file->name,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                    'file_path' => $file->file_path,
-                    'uploder_id' => $file->uploder_id,
-                     'verified' => true,
-                ]);
-            }
-
-            foreach ($selectedFileIds as $fileId) {
-                AdminVerifyfile::where('file_type_id', $fileId)->delete();
-
-            }
-  return redirect()->route('admin.verified.files')
-                     ->with('success', 'Selected files have been verified successfully.');
-
-
- } else {
-        return back()->with('error', 'No files selected for verification.');
-    }
+        if($file == null) {
+            return redirect()->back()->with('error','Failed to verify file! Please try again.');    
         }
+        
+        $file->status = "verified";
+        $file->save();
+
+    
+        return redirect()->back()->with('success','File successfully verified.');
+
+
+    }
+
+
+    public function unverify($id)
+    {
+
+        
+
+        $file = File::find($id);
+
+        if($file == null) {
+            return redirect()->back()->with('error','Failed to unverify file! Please try again.');    
+        }
+        
+        $file->status = "pending";
+        $file->save();
+
+    
+        return redirect()->back()->with('success','Successfully removed verification status from file.');
+
+
+    }
     
   
 
@@ -105,15 +90,12 @@ $file->save();
 
      public function verifiedFileShow()
 {
-    $adminUserId = auth('admin')->user()->id;
-   
-$verifiedFiles = File::join('file_types', 'files.file_type_id', '=', 'file_types.id')
-    
-    ->where('files.verified', true) // Add this line to filter verified files
-    ->get(['files.*', 'file_types.file_type']);
-       
-return view('admin.verifiedfiles', compact('verifiedFiles', 'adminUserId'));
-
+        $files = File::join('file_types', 'files.file_type_id', '=', 'file_types.id')
+        ->whereNull('files.delete')
+        ->where('files.status', 'verified')
+        ->get(['files.*', 'file_types.file_type']);
+        
+        return view('admin.verifiedfiles', compact('files'));
 
 
 }

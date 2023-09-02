@@ -93,7 +93,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         Route::get('verifyfiles', [HomeController::class, 'show'])->name('verifyfiles');
         Route::post('verified', [HomeController::class, 'verified'])->name('admin.verified');
-        
+        Route::get('/verify/{id}' , [HomeController::class, 'verify']);
+        Route::get('/unverify/{id}' , [HomeController::class, 'unverify']);
         // Logout route
         Route::namespace('Auth')->group(function () {
             Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
