@@ -63,6 +63,7 @@ class FileUpload extends Controller
     {
         $userid = auth()->user()->id;
         $files = File::join('file_types', 'files.file_type_id', '=', 'file_types.id')
+        ->whereNull('files.delete')
         ->where('files.uploder_id', $userid)
         ->get(['files.*', 'file_types.file_type']);
         
@@ -86,26 +87,51 @@ public function showVerifiedFiles()
 ////new
 
    public function sendforverification($id){
-        $userData = File::find($id);
-     
-       
-        $adminData = new  AdminVerifyfile();
-      
-        $adminData->name = $userData->name;
-        $adminData->file_path = $userData->file_path;
-        $adminData->uploder_id = $userData->id;
-        $adminData->file_type_id = $userData->file_type_id;
-        $adminData->verified = $userData->verified;
-        $adminData->verified_by = $userData->verified_by;
-        $adminData->created_at = $userData->created_at;
-        $adminData->updated_at = $userData->updated_at;
+        $userid = auth()->user()->id;
+        $file = File::where('id', '=', $id, 'and')->where('uploder_id', '=', $userid)->first();
 
-        $adminData->save();
+        if($file == null) {
+            return redirect()->back()->with('errormessage','Failed to send for verification! Please try again.');    
+        }
+        
+        $file->status = "pending";
+        $file->save();
 
     
-        return redirect()->back()->with('message','send for verification');
+        return redirect()->back()->with('message','File successfully sent for verification.');
+    }
+
+    public function revokeverification($id){
+        $userid = auth()->user()->id;
+        $file = File::where('id', '=', $id, 'and')->where('uploder_id', '=', $userid)->first();
+
+        if($file == null) {
+            return redirect()->back()->with('errormessage','Failed to revoke verification! Please try again.');    
+        }
+        
+        $file->status = "";
+        $file->save();
+
+    
+        return redirect()->back()->with('message','Verification request successfully revoked.');
     }
     
+    public function deletefile($id){
+        $userid = auth()->user()->id;
+        $file = File::where('id', '=', $id, 'and')->where('uploder_id', '=', $userid)->first();
+
+        if($file == null) {
+            return redirect()->back()->with('errormessage','Failed to delete file! Please try again.');    
+        }
+        
+        $file->delete = true;
+        $file->save();
+
+    
+        return redirect()->back()->with('message','File successfully deleted.');
+    }
+    
+
 
 }
 

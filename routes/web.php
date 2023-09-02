@@ -53,6 +53,8 @@ Route::get('/readfiles/{filename}', [FileUpload::class, 'show'])->name('readFile
     Route::get('/verified-files', [FileUpload::class, 'showVerifiedFiles'])->name('userverified-files');
 
 Route::get('/sendforverification/{id}' , [FileUpload::class, 'sendforverification']);
+Route::get('/revokeverification/{id}' , [FileUpload::class, 'revokeverification']);
+Route::get('/deletefile/{id}' , [FileUpload::class, 'deletefile']);
 
 Auth::routes();
 

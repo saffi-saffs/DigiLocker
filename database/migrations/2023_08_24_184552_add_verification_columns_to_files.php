@@ -12,8 +12,7 @@ return new class extends Migration
    public function up()
 {
     Schema::table('files', function (Blueprint $table) {
-  
-        $table->foreign('verified_by')->references('id')->on('admins');
+        $table->biginteger('verified_by');
     });
 }
 
@@ -24,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('files', function (Blueprint $table) {
-            //
+            $table->dropColumn('verified_by');
         });
     }
 };
