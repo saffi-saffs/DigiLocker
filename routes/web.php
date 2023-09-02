@@ -14,6 +14,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FileUpload;
 use App\Http\Controllers\StoredFiles;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\ProfileController;
 
 
 use App\Http\Controllers\NewsController;
@@ -50,11 +51,14 @@ Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload
 Route::get('/files', [FileUpload::class, 'show']);
 Route::get('/readfiles/{filename}', [FileUpload::class, 'show'])->name('readFiles');
 
-    Route::get('/verified-files', [FileUpload::class, 'showVerifiedFiles'])->name('userverified-files');
+Route::get('/verified-files', [FileUpload::class, 'showVerifiedFiles'])->name('userverified-files');
 
 Route::get('/sendforverification/{id}' , [FileUpload::class, 'sendforverification']);
 Route::get('/revokeverification/{id}' , [FileUpload::class, 'revokeverification']);
 Route::get('/deletefile/{id}' , [FileUpload::class, 'deletefile']);
+
+Route::get('/profile', [ProfileController::class, 'profileView']);
+Route::get('/update-user', [ProfileController::class, 'update'])->name('update-user');
 
 Auth::routes();
 

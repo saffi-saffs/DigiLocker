@@ -73,14 +73,14 @@ class FileUpload extends Controller
  
 public function showVerifiedFiles()
 {
-     $userid = auth()->user()->id;
-
-        $verifiedFiles = File::join('file_types', 'files.file_type_id', '=', 'file_types.id')
-         ->where('files.verified', true)
-         
-        ->where('files.uploder_id', $userid)
-        ->get(['files.*', 'file_types.file_type']);
- return view('userverified-files',compact('verifiedFiles', 'userid'));
+    $userid = auth()->user()->id;
+    $files = File::join('file_types', 'files.file_type_id', '=', 'file_types.id')
+    ->whereNull('files.delete')
+    ->where('files.uploder_id', $userid)
+    ->where('files.status', 'verified')
+    ->get(['files.*', 'file_types.file_type']);
+    
+    return view('userverified-files', compact('files'));
 }
 
 
