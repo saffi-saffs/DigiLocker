@@ -62,12 +62,16 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/logout" aria-expanded="false">
-                <span>
+              <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                               <span>
                   <i class="ti ti-login"></i>
-                </span>
-                <span class="hide-menu">Logout</span>
-              </a>
+                </span>&nbsp;&nbsp;&nbsp;{{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
             </li>
            
 
